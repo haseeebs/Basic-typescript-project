@@ -1,8 +1,13 @@
+import ReminderList from "./components/ReminderList";
+
+const items = [
+  {id: 1, title: 'Title...'},
+]
 
 function App() {
   return (
     <div className="App">
-      <h1 className="text-3xl p-10">Hii...</h1>
+      <ReminderList items={items} />
     </div>
   );
 }
