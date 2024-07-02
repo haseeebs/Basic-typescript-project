@@ -1,4 +1,4 @@
-export default interface Reminder {
+export default interface ReminderModel {
     id: number;
     title: string;
 }

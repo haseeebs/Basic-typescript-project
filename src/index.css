@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Global Styles */
+/* Card Styles */
+.card {
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #d0f4de 0%, #b2f0b6 100%);
+}
+
+.card::before {
+  background: linear-gradient(135deg, #d0f4de 0%, #b2f0b6 100%);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  transform: translateZ(-1px);
+}
+
+[data-tilt] {
+  transform: perspective(1000px);
+}
+
+[data-tilt]:hover {
+  transform: perspective(1000px) scale(1.05);
+}
