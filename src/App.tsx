@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import ReminderList from "./components/ReminderList";
 import ReminderModel from "./models/ReminderModel";
 import reminderService from "./services/ReminderService";
+import NewReminder from "./components/NewReminder";
 
 function App() {
 
-  const [reminder, setReminder] = useState<ReminderModel[]>([]);
+  const [reminders, setReminder] = useState<ReminderModel[]>([]);
 
   useEffect(() => {
     loadReminders();
@@ -19,11 +20,18 @@ function App() {
   const removeReminder = async (id: number) => {
     // await reminderService.removeReminder(id);
     setReminder(previousValue => previousValue.filter(value => value.id !== id));
+  };
+
+  const addReminder = async (value: string) => {
+    if(!value) return;
+    const newReminder = await reminderService.addReminder(value);
+    setReminder([newReminder, ...reminders]);
   }
 
   return (
     <div className="App">
-      <ReminderList items={reminder} removeReminder={removeReminder}/>
+      <NewReminder addReminder={addReminder}/>
+      <ReminderList items={reminders} removeReminder={removeReminder}/>
     </div>
   );
 }
